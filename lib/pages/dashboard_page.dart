@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_navigation_tests/routes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class DashboardPage extends ConsumerWidget {
   const DashboardPage({super.key});
@@ -12,19 +12,19 @@ class DashboardPage extends ConsumerWidget {
         const Text('Dashboard'),
         TextButton(
           child: const Text('Home'),
-          onPressed: () => context.go('/'),
+          onPressed: () => ref.read(routerProvider).go('/'),
         ),
         TextButton(
           child: const Text('Login'),
-          onPressed: () => context.go('/login'),
+          onPressed: () => ref.read(routerProvider).go('/login'),
         ),
         TextButton(
           child: const Text('Signup'),
-          onPressed: () => context.go('/signup'),
+          onPressed: () => ref.read(routerProvider).go('/signup'),
         ),
         TextButton(
           child: const Text('Users'),
-          onPressed: () => context.go('/users'),
+          onPressed: () => ref.read(routerProvider).go('/users'),
         ),
       ],
     );
