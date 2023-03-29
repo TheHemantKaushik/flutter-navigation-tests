@@ -17,7 +17,10 @@ class UserListPage extends ConsumerWidget {
         itemBuilder: (context, index) => Card(
           child: ListTile(
             title: Text('User: $index'),
-            onTap: () => context.go('/users/$index'),
+            onTap: () {
+              final loc = GoRouter.of(context).location;
+              context.go('$loc/$index');
+            },
           ),
         ),
       ),
