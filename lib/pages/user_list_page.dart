@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_navigation_tests/routes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -19,7 +20,7 @@ class UserListPage extends ConsumerWidget {
             title: Text('User: $index'),
             onTap: () {
               final loc = GoRouter.of(context).location;
-              context.go('$loc/$index');
+              ref.read(routerProvider).go('$loc/$index');
             },
           ),
         ),

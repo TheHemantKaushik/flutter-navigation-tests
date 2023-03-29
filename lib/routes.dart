@@ -7,13 +7,15 @@ import 'package:flutter_navigation_tests/pages/signup_page.dart';
 import 'package:flutter_navigation_tests/pages/user_detail_page.dart';
 import 'package:flutter_navigation_tests/pages/user_list_page.dart';
 import 'package:flutter_navigation_tests/widgets/dashboard_view.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_context/riverpod_context.dart';
 import 'package:go_router/go_router.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
+final routerProvider = Provider((ref) => _router);
 
-final router = GoRouter(
+final _router = GoRouter(
   initialLocation: '/',
   navigatorKey: _rootNavigatorKey,
   routes: [
@@ -57,12 +59,13 @@ final router = GoRouter(
       path: '/login',
       parentNavigatorKey: _rootNavigatorKey,
       builder: (context, state) =>
-          LoginPage(redirectPath: state.queryParams['redirect']),
+          LoginPage(redirectPath: state.queryParams['redirect'] ?? '/'),
     ),
     GoRoute(
       path: '/signup',
       parentNavigatorKey: _rootNavigatorKey,
-      builder: (context, state) => const SignupPage(),
+      builder: (context, state) =>
+          SignupPage(redirectPath: state.queryParams['redirect'] ?? '/'),
     ),
   ],
 );
